@@ -1,6 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import './styles/main.scss';
+import Image from "next/image";
+
+import Logo from "./public/Logomark.png";
 
 export type Task = {
   title: string;
@@ -16,22 +20,32 @@ export default function Home() {
   const [showDeleteTaskModal, setShowDeleteTaskModal] = useState(false);
 
   const handleToggleComplete = (index: number) => {
-    const updatedTasks = tasks.map((t, i) =>
-      i === index && { ...t, completed: !t.completed } 
+    const updatedTasks = tasks.map(
+      (t, i) => i === index && { ...t, completed: !t.completed }
     );
 
     setTasks(updatedTasks as Task[]);
   };
 
   return (
-    <div>
+    <main>
+      <header className="header">
+        <div className="content-header">
+        <div className="logo-header">
+      <Image src={Logo} alt="Logo" width={33.1} height={32.93} />
+      <h1 className="h1-logo">
+      FocalPoint
+        </h1>
+        </div>
       <h1>Bem-vindo de volta, Marcus</h1>
       <h2>Segunda, 01 de dezembro de 2025</h2>
+        </div>
+      </header>
 
       <div>
         <h2>Suas tarefas de hoje</h2>
         {tasks
-          .filter(task => !task.completed)
+          .filter((task) => !task.completed)
           .map((task, index) => (
             <div key={index}>
               <input
@@ -52,7 +66,7 @@ export default function Home() {
 
         <h2>Tarefas finalizadas</h2>
         {tasks
-          .filter(task => task.completed)
+          .filter((task) => task.completed)
           .map((task, index) => (
             <div key={index}>
               <input
@@ -69,10 +83,7 @@ export default function Home() {
                 Delete
               </button>
             </div>
-            
-          ))
-            
-          }
+          ))}
       </div>
       <button onClick={() => setShowAddTaskModal(true)}>
         Adicionar nova tarefa
@@ -82,14 +93,14 @@ export default function Home() {
         <div className="modal">
           <h2>Nova tarefa</h2>
           <label htmlFor="">
-          Tarefa
-          <input
-            type="text"
-            placeholder="Título"
-            name="task"
-            onChange={(e) => setTask(e.target.value)}
+            Tarefa
+            <input
+              type="text"
+              placeholder="Título"
+              name="task"
+              onChange={(e) => setTask(e.target.value)}
             />
-            </label>
+          </label>
           <button onClick={() => setShowAddTaskModal(false)}>Cancelar</button>
           <button
             onClick={() => {
@@ -103,18 +114,26 @@ export default function Home() {
       )}
 
       {showDeleteTaskModal && (
-        <div className="modal">  
-        <h2>Deletar tarefa</h2>  
-        <p>Tem certeza que você deseja deletar essa tarefa?</p>  
-        <button onClick={() => {
-          setShowDeleteTaskModal(false);
-        }}>Cancelar</button>  
-        <button onClick={() => {
-          setTasks(tasks.filter((task, index) => index !== 0));
-          setShowDeleteTaskModal(false);
-}}>Deletar</button>  
-      </div>  
+        <div className="modal">
+          <h2>Deletar tarefa</h2>
+          <p>Tem certeza que você deseja deletar essa tarefa?</p>
+          <button
+            onClick={() => {
+              setShowDeleteTaskModal(false);
+            }}
+          >
+            Cancelar
+          </button>
+          <button
+            onClick={() => {
+              setTasks(tasks.filter((task, index) => index !== 0));
+              setShowDeleteTaskModal(false);
+            }}
+          >
+            Deletar
+          </button>
+        </div>
       )}
-    </div>
+    </main>
   );
 }
