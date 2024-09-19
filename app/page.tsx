@@ -18,7 +18,7 @@ export default function Home() {
     { id: 1, title: "Lavar as mãos", completed: false },
     { id: 2, title: "Fazer um bolo", completed: false },
     { id: 3, title: "Lavar a louça", completed: false },
-    { id: 4, title: "Levar o lixo fora", completed: true }
+    { id: 4, title: "Levar o lixo para fora", completed: true }
   ];
 
   const [tasks, setTasks] = useState<Task[]>(initialTasks);
@@ -167,10 +167,11 @@ export default function Home() {
           </div>
         </div>
       )}
-
+    <div className="btn-add-task">
       <button onClick={() => setShowAddTaskModal(true)}>
         Adicionar nova tarefa
       </button>
+    </div>  
     </main>
   );
 }

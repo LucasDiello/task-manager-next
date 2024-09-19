@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap");
+@import "./responsive.scss";
 
 * {
   margin: 0;
@@ -7,16 +8,28 @@
   font-family: "Inter Tight", sans-serif;
 }
 
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
 .header {
   margin-block-start: 24px;
   margin-inline: 56px;
   height: 60px;
   border-bottom: 1px solid #d7dde9;
 
+  @include sm {
+    margin-inline: 24px;
+    height: 114px;
+  }
+
   .logo-header {
     display: flex;
     align-items: center;
     width: 100%;
+    
     .h1-logo {
       margin-inline-start: 10px;
       color: #101828;
@@ -30,14 +43,25 @@
     height: 36px;
     justify-content: space-between;
     align-items: center;
-
+   
+    @include sm {
+        gap: 8px;
+        flex-direction: column;
+    }
+    
     h1 {
-      font-size: 24px;
-      font-weight: 500;
-      color: #000000;
-      letter-spacing: -2%;
-      width: 100%;
-      text-align: center;
+        font-size: 24px;
+        font-weight: 500;
+        color: #000000;
+        letter-spacing: -2%;
+        width: 100%;
+        text-align: center;
+
+        @include sm {
+          text-align: start;
+          font-size: 16px;
+        }
+
     }
 
     h2 {
@@ -48,6 +72,11 @@
       line-height: 19.36px;
       letter-spacing: -2%;
       text-align: end;
+
+      @include sm {
+        text-align: start;
+      }
+
     }
   }
 }
@@ -58,8 +87,11 @@
   align-items: center;
   margin-top: 24px;
   justify-content: center;
-  border: 2px solid red;
   margin-inline: 56px;
+
+  @include sm {
+    margin-inline: 24px;
+  }
 
   h2 {
     font-weight: 400;
@@ -81,6 +113,12 @@
     padding: 32px;
     border-radius: 16px;
     border: 1px solid #eaecf0;
+    box-shadow: 0px 1px 2px 0px rgb(16, 24, 40, 0.05);
+
+    @include sm {
+        width: 272px;
+        height: 428px;
+    }
 
     .tasks-content2 {
       display: flex;
@@ -95,16 +133,14 @@
         gap: 16px;
       }
 
+
       .task,
       .task-finished {
         display: flex;
         width: 386px;
         height: 56px;
-        background-image: linear-gradient(
-            to right,
-            #d7dde9 35%,
-            rgba(255, 255, 255, 0) 0%
-          ),
+        background-image: 
+          linear-gradient(to right, #d7dde9 35%, rgba(255, 255, 255, 0) 0%),
           linear-gradient(to bottom, #d7dde9 35%, rgba(255, 255, 255, 0) 0%),
           linear-gradient(to left, #d7dde9 35%, rgba(255, 255, 255, 0) 0%),
           linear-gradient(to top, #d7dde9 35%, rgba(255, 255, 255, 0) 0%);
@@ -114,6 +150,22 @@
         padding: 16px;
         border-radius: 8px;
         justify-content: space-between;
+
+        &.task {
+            @include sm {
+                max-width: 208px;
+                height: 56px;
+            }
+        }
+
+        &.task-finished {
+            @include sm {
+                max-width: 208px;
+                height: 70px;
+            }
+        }
+
+        
 
         button {
           border: none;
@@ -150,6 +202,10 @@
             font-size: 16px;
             line-height: 19.36px;
             color: #0000008a;
+
+            @include sm {
+                font-size: 15px;
+            }
           }
         }
 
@@ -210,9 +266,12 @@
   background: rgb(255, 255, 255, 1);
   border-radius: 8px;
   box-shadow: 0px 24px 48px -12px #1018282e;
-  filter: drop-shadow(0px 24px 48px -12px #1018282e);
   z-index: 1000;
 
+    @include sm {
+        width: 100%;
+        height: 100%;
+    }
 
   label {
     font-size: 16px;
@@ -246,6 +305,11 @@
     display: flex;
     justify-content: space-between;
 
+    @include sm {
+        flex-direction: column-reverse;
+        gap: 16px;
+    }
+
     button {
       padding: 16px 24px 16px 24px;
       width: 185px;
@@ -253,6 +317,10 @@
       border-radius: 8px;
       cursor: pointer;
       font-size: 16px;
+
+      @include sm {
+        width: 100%;
+      } 
 
       &.linear-gradient-delete {
         background-image: linear-gradient(90deg, #D30707 0%, #F05353 68.65%);
@@ -298,3 +366,28 @@
   z-index: 999;
 }
 
+.btn-add-task {
+    margin-inline: 56px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    button {
+        cursor: pointer;
+        border: none;
+        width: 450px;
+        height: 51px;
+        border-radius: 8px;
+        padding: 16px 24px 16px 24px;
+        background-image: linear-gradient(90deg, #0796D3 0%, #53C0F0 68.65%);
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 19.36px;
+        color: rgb(255, 255, 255, 1);
+
+    }
+
+    @include sm {
+        margin-inline: 24px;
+    }
+}
