@@ -15,11 +15,13 @@
     
     .logo-header {
      display: flex;
-        align-items: center;    
+        align-items: center;
+        width: 100%;
         .h1-logo {
             margin-inline-start: 10px;
             color: #101828;
             font-weight: bold;
+            text-align: start;
         }
     }
 
@@ -34,14 +36,154 @@
             font-weight: 500;
             color: #000000;
             letter-spacing: -2%;
+            width: 100%;
+            text-align: center;
         }
 
         h2 {
+            width: 100%;
             font-weight: 400;
             font-size: 16px;
             color: #00000054;
             line-height: 19.36px;
             letter-spacing: -2%;
+            text-align: end;
         }
     }
+}
+
+.tasks-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 24px;
+    justify-content: center;
+    border: 2px solid red;
+    margin-inline: 56px;
+
+    h2 {
+        font-weight: 400;
+        font-size: 16px;
+        color: #00000054;
+        line-height: 19.36px;
+        text-align: center;
+        margin-bottom: 24px;
+
+        &:last-of-type {
+            margin-top: 24px;
+            margin-bottom: 24px;
+        }
+    }
+
+    .tasks-content {
+        width: 450px;
+        height: 446px;
+        padding: 32px;
+        border-radius: 16px;
+        border: 1px solid #EAECF0;
+
+        .tasks-content2 {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+
+            ul {
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+              }
+              
+              .task, .task-finished {  
+                display: flex;  
+                width: 386px;  
+                height: 56px;  
+                background-image: linear-gradient(to right, #D7DDE9 35%, rgba(255, 255, 255, 0) 0%),   
+                                  linear-gradient(to bottom, #D7DDE9 35%, rgba(255, 255, 255, 0) 0%),   
+                                  linear-gradient(to left, #D7DDE9 35%, rgba(255, 255, 255, 0) 0%),   
+                                  linear-gradient(to top, #D7DDE9 35%, rgba(255, 255, 255, 0) 0%);  
+                background-position: bottom, right, top, left;  
+                background-size: 9px 1.2px, 1.2px 9px, 9px 1.2px, 1.2px 9px;  
+                background-repeat: repeat-x, repeat-y, repeat-x, repeat-y;  
+                padding: 16px;  
+                border-radius: 8px;  
+                justify-content: space-between;  
+                
+                button {
+                  border: none;
+                  background-color: transparent;
+                  cursor: pointer;
+                }
+              
+                cursor: pointer;
+                &:hover {
+                  background-color: #F7F9FD;
+                  background-image: none;
+                }
+              
+                .content-nochecked {
+                    display: flex;
+                    
+                    span {
+                        font-weight: 400;
+                        font-size: 16px;
+                        line-height: 19.36px;
+                        color: #000000;
+                        margin-left: 15px;
+                    }
+                }
+
+                .content-checked {
+                    display: flex;
+                    align-items: center;
+                    span {
+                        position: relative;
+                        right: 10px;
+                        text-decoration: line-through;
+                        font-weight: 400;
+                        font-size: 16px;
+                        line-height: 19.36px;
+                        color: #0000008A;
+                    }
+                }
+
+                .task-checked {
+                  display: flex;
+                  align-items: center;
+
+                  input {
+                    all: unset;
+                    height: 24px;
+                    width: 24px;
+                    border: 1px solid #D7DDE9;
+                    border-radius: 4px;
+                    position: relative;
+                  }
+                  
+                  input:checked {
+                    background-color: #A0DCF6;
+                  }
+              
+                  label {
+                    position: relative;
+                    right: 26px;
+                    width: 26px;
+                    height: 26px;
+                    border-radius: 4px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border: 1px solid #0796D3;
+                    background-color: #A0DCF6;
+                    cursor: pointer;
+                  }
+              
+                    
+                }
+            }
+        
+        }
+    }
+
 }

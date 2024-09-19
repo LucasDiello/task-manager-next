@@ -4,12 +4,16 @@ import { useState } from "react";
 import './styles/main.scss';
 import Image from "next/image";
 
+import Trash from "./public/Icon.png";
 import Logo from "./public/Logomark.png";
+import IconChecked from "./public/IconChecked.png";
 
 export type Task = {
+  id: number;
   title: string;
   completed: boolean;
 };
+
 
 export default function Home() {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -19,16 +23,17 @@ export default function Home() {
   const [showAddTaskModal, setShowAddTaskModal] = useState(false);
   const [showDeleteTaskModal, setShowDeleteTaskModal] = useState(false);
 
-  const handleToggleComplete = (index: number) => {
-    const updatedTasks = tasks.map(
-      (t, i) => i === index && { ...t, completed: !t.completed }
+  const handleToggleComplete = (id: number) => {
+    const updatedTasks = tasks.map((task) =>
+      task.id === id ? { ...task, completed: !task.completed } : task
     );
-
-    setTasks(updatedTasks as Task[]);
+    setTasks(updatedTasks);
   };
+  
+  
 
   return (
-    <main>
+    <main >
       <header className="header">
         <div className="content-header">
         <div className="logo-header">
@@ -42,57 +47,94 @@ export default function Home() {
         </div>
       </header>
 
-      <div>
+      <section className="tasks-container">
+        <div className="tasks-content">
+           <div className="tasks-content2">
+
         <h2>Suas tarefas de hoje</h2>
-        {tasks
+
+<ul>
+
+        {
+          tasks
           .filter((task) => !task.completed)
-          .map((task, index) => (
-            <div key={index}>
+          .map((task) => (
+            <div key={task.id} className="task">
+              <div className="content-nochecked" >
+              <div className="task-checked">
               <input
                 type="checkbox"
                 checked={task.completed}
-                onChange={() => handleToggleComplete(index)}
-              />
+                onChange={() => handleToggleComplete(task.id)}
+                />
               <span>{task.title}</span>
+                </div>
+                </div>
               <button
                 onClick={() => {
                   setShowDeleteTaskModal(true);
                 }}
-              >
-                Delete
+                >
+                  <Image src={Trash} alt="trash" width={18} height={20}/>
               </button>
-            </div>
+                </div>
           ))}
 
-        <h2>Tarefas finalizadas</h2>
-        {tasks
-          .filter((task) => task.completed)
-          .map((task, index) => (
-            <div key={index}>
-              <input
-                type="checkbox"
-                checked={task.completed}
-                onChange={() => handleToggleComplete(index)}
-              />
-              <span>{task.title}</span>
-              <button
-                onClick={() => {
-                  setShowDeleteTaskModal(true);
-                }}
+          </ul>
+
+  <h2>Tarefas finalizadas</h2>
+          <ul>
+  {tasks
+    .filter((task) => task.completed)
+    .map((task) => (
+      <div key={task.id} className="task-finished">
+        <div className="content-checked">
+
+        <div className="task-checked">
+          <input
+            type="checkbox"
+            checked={task.completed}
+            />
+          <label
+          onClick={() => handleToggleComplete(task.id)}
+ >
+            {task.completed && (
+              <svg
+              width="14"
+              height="11"
+              viewBox="0 0 14 11"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
               >
-                Delete
-              </button>
+                <path
+                  d="M13 1.5L4.75 9.75L1 6"
+                  stroke="#0796D3"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  />
+              </svg>
+            )}
+          </label>
+        </div>
+          <span>{task.title}</span>
             </div>
-          ))}
+        <button
+          onClick={() => {
+            setShowDeleteTaskModal(true);
+          }}
+        >
+          <Image src={Trash} alt="trash" width={18} height={20} />
+        </button>
       </div>
-      <button onClick={() => setShowAddTaskModal(true)}>
-        Adicionar nova tarefa
-      </button>
+    ))}
+</ul>
 
+      
       {showAddTaskModal && (
         <div className="modal">
           <h2>Nova tarefa</h2>
-          <label htmlFor="">
+          <label >
             Tarefa
             <input
               type="text"
@@ -105,7 +147,7 @@ export default function Home() {
           <button
             onClick={() => {
               setShowAddTaskModal(false);
-              setTasks([...tasks, { title: task, completed: false }]);
+              setTasks([...tasks, { id: Date.now(), title: task, completed: false }]);
             }}
           >
             Adicionar
@@ -133,7 +175,16 @@ export default function Home() {
             Deletar
           </button>
         </div>
+        
       )}
+        </div>
+
+        </div>
+      </section>
+      <button onClick={() => setShowAddTaskModal(true)}>
+        Adicionar nova tarefa
+      </button>
+
     </main>
   );
 }
