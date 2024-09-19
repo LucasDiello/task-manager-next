@@ -131,6 +131,16 @@ main {
         display: flex;
         flex-direction: column;
         gap: 16px;
+
+        &.tasks-nochecked {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        &.tasks-checked {
+            max-height: 100px;
+            overflow-y: auto;
+        }
       }
 
 
@@ -181,7 +191,9 @@ main {
 
         .content-nochecked {
           display: flex;
-
+          align-items: center;
+          justify-content: space-between;
+            width: 100%;
           span {
             font-weight: 400;
             font-size: 16px;
@@ -194,6 +206,9 @@ main {
         .content-checked {
           display: flex;
           align-items: center;
+        justify-content: space-between;
+            width: 100%;
+
           span {
             position: relative;
             right: 10px;
@@ -213,8 +228,14 @@ main {
           display: flex;
           align-items: center;
 
+          .task-item {
+            display: flex;
+            align-items: center;
+          }
+
           input {
             all: unset;
+            top: 2px;
             height: 24px;
             width: 24px;
             border: 1px solid #d7dde9;
