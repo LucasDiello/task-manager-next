@@ -68,7 +68,7 @@ export default function Home() {
 
             <TaskList
               tasks={tasks.filter((task) => task.completed)}
-              title="Tarefas concluídas"
+              title="Tarefas finalizadas"
               toggleComplete={handleToggleComplete}
               deleteTask={setTaskToDelete}
               showDeleteModal={() => setShowDeleteTaskModal(true)}
