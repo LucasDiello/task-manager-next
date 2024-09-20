@@ -46,6 +46,9 @@ function TaskList({
                     <label onClick={() => toggleComplete(task.id)}>
                       <CheckIcon />
                     </label>
+                   <span>
+                     {task.title}
+                    </span>
                   </>
                 ) : (
                   <div className="task-item">
@@ -57,7 +60,6 @@ function TaskList({
                     <span>{task.title}</span>
                   </div>
                 )}
-                {task.completed && <span> {task.title}</span>}
               </div>
               <button
                 onClick={() => {

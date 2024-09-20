@@ -220,6 +220,8 @@ main {
 
             @include sm {
                 font-size: 15px;
+                border: 2px solid red;
+                width: 112px;
             }
           }
         }
