@@ -57,23 +57,24 @@ export default function Home() {
      <Header blurClass={blur} />
       <section className={`tasks-container ${blur}`}>
         <div className="tasks-content">
-          <div className="tasks-content2">
+          <div className="tasks-day">
           <TaskList
               tasks={tasks.filter((task) => !task.completed)}
               title="Suas tarefas de hoje"
               toggleComplete={handleToggleComplete}
               deleteTask={setTaskToDelete}
               showDeleteModal={() => setShowDeleteTaskModal(true)}
-            />
-
+              />
+              </div>
+              <div className="tasks-day-finished">
             <TaskList
               tasks={tasks.filter((task) => task.completed)}
               title="Tarefas finalizadas"
               toggleComplete={handleToggleComplete}
               deleteTask={setTaskToDelete}
               showDeleteModal={() => setShowDeleteTaskModal(true)}
-            />
-          </div>
+              />
+              </div>
         </div>
       </section>
 
