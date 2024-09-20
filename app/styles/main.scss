@@ -144,6 +144,10 @@ main {
         &.tasks-checked {
             max-height: 100px;
             overflow-y: auto;
+
+            @include sm {
+                max-height: 90px;
+            }
         }
       }
 
